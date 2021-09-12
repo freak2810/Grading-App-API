@@ -3,18 +3,74 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// TODO: define fields and relations
+generator client {
+  provider = "prisma-client-js"
+}
+
 model User {
+  id        Int    @id @default(autoincrement())
+  email     String @unique
+  firstName String
+  lastName  String
+  social    Json?
+
+  courses     CourseEnrollment[]
+  testResults TestResult[]       @relation(name: "results") // Grades acquired by student
+  testGrades  TestResult[]       @relation(name: "grades") // Grades assigned by teacher
+
 }
 
-// TODO: define fields and relations
 model Course {
+  id            Int     @id @default(autoincrement())
+  name          String
+  courseDetails String?
+
+  members CourseEnrollment[]
+  tests   Test[]
 }
 
-// TODO: define fields and relations
+model CourseEnrollment {
+  createdAt DateTime @default(now())
+  role      UserRole
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId Int
+
+  @@id([userId, courseId])
+  @@index([userId, role])
+}
+
 model Test {
+  id        Int      @id @default(autoincrement())
+  name      String
+  date      DateTime
+  updatedAt DateTime @updatedAt
+
+  testResults TestResult[]
+  course      Course       @relation(fields: [courseId], references: [id])
+  courseId    Int
 }
 
-// TODO: define fields and relations
 model TestResult {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  result    Int
+
+  test   Test @relation(fields: [testId], references: [id])
+  testId Int
+
+
+  studentId Int
+  student   User @relation("results", fields: [studentId], references: [id])
+
+  gradeId  Int
+  gradedBy User @relation("grades", fields: [gradeId], references: [id])
+}
+
+enum UserRole {
+  STUDENT
+  TEACHER
 }
