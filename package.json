@@ -1,35 +1,35 @@
 {
-  "name": "prisma-class",
-  "version": "1.0.0",
-  "license": "MIT",
-  "dependencies": {
-    "@hapi/boom": "^9.1.0",
-    "@hapi/hapi": "^20.1.5",
-    "@hapi/joi": "^17.1.1",
-    "@prisma/client": "^3.0.2",
-    "date-fns": "^2.15.0"
-  },
-  "devDependencies": {
-    "@types/hapi__hapi": "^20.0.9",
-    "@types/hapi__joi": "^17.1.4",
-    "@types/jest": "^27.0.1",
-    "jest": "^27.1.1",
-    "prisma": "^3.0.2",
-    "ts-jest": "^27.0.5",
-    "ts-node": "^10.2.1",
-    "ts-node-dev": "^1.0.0-pre.52",
-    "typescript": "^4.4.2"
-  },
-  "scripts": {
-    "dev": "ts-node-dev --respawn ./src/index.ts",
-    "seed": "ts-node ./src/seed.ts",
-    "test": "jest",
-    "postgres:start": "docker-compose up -d",
-    "migrate:save": "prisma migrate --experimental save",
-    "migrate:up": "prisma migrate --experimental up --auto-approve --create-db",
-    "prisma:generate": "prisma generate"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  }
+	"name": "prisma-class",
+	"version": "1.0.0",
+	"license": "MIT",
+	"dependencies": {
+		"@hapi/boom": "^9.1.0",
+		"@hapi/hapi": "^20.1.5",
+		"@hapi/joi": "^17.1.1",
+		"@prisma/client": "^3.0.2",
+		"date-fns": "^2.15.0"
+	},
+	"devDependencies": {
+		"@types/hapi__hapi": "^20.0.9",
+		"@types/hapi__joi": "^17.1.4",
+		"@types/jest": "^27.0.1",
+		"jest": "^27.1.1",
+		"prisma": "^3.0.2",
+		"ts-jest": "^27.0.5",
+		"ts-node": "^10.2.1",
+		"ts-node-dev": "^1.0.0-pre.52",
+		"typescript": "^4.4.2"
+	},
+	"scripts": {
+		"dev": "ts-node-dev --respawn ./src/index.ts",
+		"seed": "ts-node ./src/seed.ts",
+		"test": "jest",
+		"postgres:start": "docker-compose up -d",
+		"migrate:save": "prisma migrate --experimental save",
+		"migrate:up": "prisma migrate --experimental up --auto-approve --create-db",
+		"prisma:generate": "prisma generate"
+	},
+	"engines": {
+		"node": ">=12.0.0"
+	}
 }
