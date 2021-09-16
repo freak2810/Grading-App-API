@@ -1,6 +1,7 @@
 import Hapi from '@hapi/hapi';
 import status from './plugins/status';
 import prisma from './plugins/prisma';
+import users from './plugins/users';
 
 const server = Hapi.server({
 	port: process.env.PORT || 3000,
@@ -9,7 +10,7 @@ const server = Hapi.server({
 
 export async function createServer() {
 	//Registering Routes
-	await server.register([status, prisma]);
+	await server.register([status, prisma, users]);
 	await server.initialize();
 
 	return server;
